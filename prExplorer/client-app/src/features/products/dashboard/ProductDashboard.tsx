@@ -15,13 +15,14 @@ interface Props {
   closeForm: () => void;
   createOrEdit: (product: Product) => void;
   deleteProduct: (id: string) => void;
+  submitting: boolean;
 }
 
-export default function ProductDashboard({ products, selectProduct, selectedProduct, cancelSelectedProduct, editMode, openForm, closeForm, createOrEdit, deleteProduct}: Props) {
+export default function ProductDashboard({ products, selectProduct, selectedProduct, cancelSelectedProduct, editMode, openForm, closeForm, createOrEdit, deleteProduct, submitting}: Props) {
   return (
     <Grid>
       <GridColumn width="10">
-        <ProductList products={products} selectProduct= {selectProduct} deleteProduct={deleteProduct} />
+        <ProductList products={products} selectProduct= {selectProduct} deleteProduct={deleteProduct} submitting={submitting} />
       </GridColumn>
       <GridColumn width="6">
         {selectedProduct && !editMode &&
@@ -31,7 +32,7 @@ export default function ProductDashboard({ products, selectProduct, selectedProd
         openForm={openForm}
         />}
         {editMode &&
-        <ProductForm closeForm={closeForm} product={selectedProduct} createOrEdit={createOrEdit}/>}
+        <ProductForm closeForm={closeForm} product={selectedProduct} createOrEdit={createOrEdit} submitting={submitting}/>}
       </GridColumn>
     </Grid>
   );

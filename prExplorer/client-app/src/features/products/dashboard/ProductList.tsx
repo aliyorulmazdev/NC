@@ -1,4 +1,4 @@
-import React from "react";
+import React, { SyntheticEvent, useState } from "react";
 import { Product } from "../../../app/models/product";
 import { Button, Item, Label, Segment } from "semantic-ui-react";
 
@@ -6,9 +6,18 @@ interface Props {
   products: Product[];
   selectProduct: (id: string) => void;
   deleteProduct: (id: string) => void;
+  submitting: boolean;
 }
 
-export default function ProductList({ products, selectProduct, deleteProduct }: Props) {
+export default function ProductList({ products, selectProduct, deleteProduct, submitting }: Props) {
+
+  const [target, setTarget] = useState('');
+
+  function handleProductDelete(e: SyntheticEvent<HTMLButtonElement>, id: string) {
+    setTarget(e.currentTarget.name);
+    deleteProduct(id);
+  }
+
   return (
     <Segment>
       <Item.Group divided>
@@ -23,7 +32,7 @@ export default function ProductList({ products, selectProduct, deleteProduct }: 
               </Item.Description>
               <Item.Extra>
                 <Button onClick={() => selectProduct(product.id)} floated="right" content='view' color='blue'/>
-                <Button onClick={() => deleteProduct(product.id)} floated="right" content='delete' color='red'/>
+                <Button name = {product.id} loading={submitting && target === product.id} onClick={(e) => handleProductDelete(e, product.id)} floated="right" content='delete' color='red'/>
                 <Label basic content={product.category} />
               </Item.Extra>
             </Item.Content>
