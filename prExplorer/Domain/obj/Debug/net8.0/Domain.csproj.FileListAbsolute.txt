@@ -9,3 +9,4 @@ C:\Users\Ermat\Desktop\NC\prExplorer\Domain\obj\Debug\net8.0\Domain.dll
 C:\Users\Ermat\Desktop\NC\prExplorer\Domain\obj\Debug\net8.0\refint\Domain.dll
 C:\Users\Ermat\Desktop\NC\prExplorer\Domain\obj\Debug\net8.0\Domain.pdb
 C:\Users\Ermat\Desktop\NC\prExplorer\Domain\obj\Debug\net8.0\ref\Domain.dll
+C:\Users\Ermat\Desktop\NC\prExplorer\Domain\obj\Debug\net8.0\Domain.sourcelink.json

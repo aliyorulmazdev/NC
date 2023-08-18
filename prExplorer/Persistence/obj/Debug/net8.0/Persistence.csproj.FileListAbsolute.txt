@@ -13,3 +13,4 @@ C:\Users\Ermat\Desktop\NC\prExplorer\Persistence\obj\Debug\net8.0\Persistence.dl
 C:\Users\Ermat\Desktop\NC\prExplorer\Persistence\obj\Debug\net8.0\refint\Persistence.dll
 C:\Users\Ermat\Desktop\NC\prExplorer\Persistence\obj\Debug\net8.0\Persistence.pdb
 C:\Users\Ermat\Desktop\NC\prExplorer\Persistence\obj\Debug\net8.0\ref\Persistence.dll
+C:\Users\Ermat\Desktop\NC\prExplorer\Persistence\obj\Debug\net8.0\Persistence.sourcelink.json

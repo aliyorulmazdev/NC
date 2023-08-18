@@ -1186,8 +1186,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "c:\\Users\\Ermat\\Desktop\\NC\\prExplorer\\Domain\\Domain.csproj": {
-              "projectPath": "c:\\Users\\Ermat\\Desktop\\NC\\prExplorer\\Domain\\Domain.csproj"
+            "C:\\Users\\Ermat\\Desktop\\NC\\prExplorer\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\Ermat\\Desktop\\NC\\prExplorer\\Domain\\Domain.csproj"
             }
           }
         }
