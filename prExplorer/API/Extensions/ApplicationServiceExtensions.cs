@@ -8,6 +8,7 @@ namespace API.Extensions
 {
     public static class ApplicationServiceExtensions
     {
+        // [CR 19-08-2023] That's a nice practice that you create separate classes for stuff like that :)
         public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddEndpointsApiExplorer();

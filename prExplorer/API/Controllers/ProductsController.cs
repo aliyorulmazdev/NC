@@ -9,12 +9,19 @@ namespace API.Controllers
 {
     public class ProductsController : BaseApiController
     {
+        // [CR 19-08-2023] You don't need to add "Product" to all actions in this controller.
+        // Imagine how your API URL looks like now: https://localhost:5001/api/products/GetProducts
+        // "products" is there twice. You can think of better names, like "All", "Details", "Create", "Update", "Delete"
+        // In effect, the URLs would look more RESTful, e.g. https://localhost:5001/api/products/all, https://localhost:5001/api/products/details/1 etc.
         [HttpGet]
         public async Task<ActionResult<List<Product>>> GetProducts()
         {
             return await Mediator.Send(new List.Query());
         }
 
+        // [CR 19-08-2023] What about errors handling in all these methods below?
+        // What should the API consumer receive when there was an internal errors when fetching from/saving something to the database?
+        // On the other hand: what should be the API response if the user provides a wrong data (e.g. wrong product ID)?
         [HttpGet("{id}")]
         public async Task<ActionResult<Product>> GetProduct(Guid id)
         {

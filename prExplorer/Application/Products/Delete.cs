@@ -22,6 +22,8 @@ namespace Application.Products
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
                 var product = await _context.Products.FindAsync(request.Id);
+                // [CR 19-08-2023] What if the product is not found?
+                
                 _context.Remove(product);
                 await _context.SaveChangesAsync();
                 return Unit.Value;

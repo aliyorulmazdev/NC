@@ -7,6 +7,9 @@ namespace Application.Products
 {
     public class Create
     {
+        // [CR 19-08-2023] Try to be consistent with your code style. The most common convention in C# is to put 
+        // the class opening and closing brackets in a new line. See my remark about using prettier/csharpier
+        // which would do that for you automatically
         public class Command : IRequest {
             public Product Product { get; set; }
         }

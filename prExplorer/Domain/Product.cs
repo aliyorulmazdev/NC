@@ -12,6 +12,8 @@ public class Product
     public string Brand { get; set; }
     public string Category { get; set; }
     public string Thumbnail { get; set; }
+    
+    // [CR 19-08-2023] Why didn't you add Images array as well? :)
     // public List<string> Images { get; set; }
 }
 }
