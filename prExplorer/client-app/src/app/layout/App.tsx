@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Container } from "semantic-ui-react";
-import { Product } from "../models/product";
-import NavBar from "./NavBar";
-import ProductDashboard from "../../features/products/dashboard/ProductDashboard";
 import { v4 as uuid } from "uuid";
+import ProductDashboard from "../../features/products/dashboard/ProductDashboard";
 import agent from "../api/agent";
+import { Product } from "../models/product";
 import LoadingComponent from "./LoadingComponent";
+import NavBar from "./NavBar";
 
 function App() {
+  // [CR 19-08-2023] These things related to fetching the products should go to components responsible for displaying the products list,
+  // so in this case it should be ProductDashboard.tsx
+  // The App component should be quite empty, it fact should only contain the NavBar and the ProductDashboard
   const [products, setProducts] = useState<Product[]>([]);
   const [selectedProduct, setSelectedProduct] = useState<Product | undefined>(
     undefined
@@ -15,6 +18,7 @@ function App() {
   const [editMode, setEditMode] = useState(false);
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
+  // [CR 19-08-2023] As you have quite some state here already, please move it to MobX store/stores
 
   useEffect(() => {
     agent.Products.list().then((response) => {
@@ -50,7 +54,9 @@ function App() {
         setSubmitting(false);
       });
     } else {
-      product.id = uuid();
+      product.id = uuid(); // [CR 19-08-2023] It would be better to let the server generate the id
+      // This way, IDs management stays on the server. That way, you could have a single action in your API for "Saving" the product.
+      // Based on whether the ID is present or not, the server would know whether to create or update the product.
       agent.Products.create(product).then(() => {
         setProducts([...products, product]);
         setSelectedProduct(product);
@@ -68,6 +74,7 @@ function App() {
     });
   }
 
+  // [CR 19-08-2023] That's again a very good practice to use a LoadingComponent!
   if (loading) return <LoadingComponent content="Loading App" />;
 
   return (

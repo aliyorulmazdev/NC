@@ -1,7 +1,8 @@
-import React, { SyntheticEvent, useState } from "react";
-import { Product } from "../../../app/models/product";
+import { SyntheticEvent, useState } from "react";
 import { Button, Item, Label, Segment } from "semantic-ui-react";
+import { Product } from "../../../app/models/product";
 
+// [CR 19-08-2023] Remember about proper names, "Props" is too generic
 interface Props {
   products: Product[];
   selectProduct: (id: string) => void;
