@@ -1996,11 +1996,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\Ermat\\Desktop\\NC\\prExplorer\\API\\API.csproj",
+      "projectUniqueName": "c:\\Users\\Ermat\\Desktop\\NC Github\\NC\\prExplorer\\API\\API.csproj",
       "projectName": "API",
-      "projectPath": "c:\\Users\\Ermat\\Desktop\\NC\\prExplorer\\API\\API.csproj",
+      "projectPath": "c:\\Users\\Ermat\\Desktop\\NC Github\\NC\\prExplorer\\API\\API.csproj",
       "packagesPath": "C:\\Users\\Ermat\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\Ermat\\Desktop\\NC\\prExplorer\\API\\obj\\",
+      "outputPath": "c:\\Users\\Ermat\\Desktop\\NC Github\\NC\\prExplorer\\API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -2021,8 +2021,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "c:\\Users\\Ermat\\Desktop\\NC\\prExplorer\\Application\\Application.csproj": {
-              "projectPath": "c:\\Users\\Ermat\\Desktop\\NC\\prExplorer\\Application\\Application.csproj"
+            "c:\\Users\\Ermat\\Desktop\\NC Github\\NC\\prExplorer\\Application\\Application.csproj": {
+              "projectPath": "c:\\Users\\Ermat\\Desktop\\NC Github\\NC\\prExplorer\\Application\\Application.csproj"
             }
           }
         }
