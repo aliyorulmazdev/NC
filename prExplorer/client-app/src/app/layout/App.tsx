@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Container } from "semantic-ui-react";
-import { Product } from "../models/product";
-import NavBar from "./NavBar";
-import ProductDashboard from "../../features/products/dashboard/ProductDashboard";
 import { v4 as uuid } from "uuid";
+import ProductDashboard from "../../features/products/dashboard/ProductDashboard";
 import agent from "../api/agent";
+import { Product } from "../models/product";
 import LoadingComponent from "./LoadingComponent";
+import NavBar from "./NavBar";
 
 function App() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -40,6 +40,7 @@ function App() {
     setEditMode(false);
   }
 
+  const x = 5;
   function handleCreateOrEditProduct(product: Product) {
     setSubmitting(true);
     if (product.id) {
