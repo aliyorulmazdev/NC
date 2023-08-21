@@ -41,6 +41,7 @@ function App() {
   }
 
   const x = 5;
+  const y = 6;
   function handleCreateOrEditProduct(product: Product) {
     setSubmitting(true);
     if (product.id) {
