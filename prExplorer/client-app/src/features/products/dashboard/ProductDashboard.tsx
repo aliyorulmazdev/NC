@@ -22,9 +22,6 @@ export default observer(function ProductDashboard() {
       <GridColumn width="15">
         <ProductList />
       </GridColumn>
-      <GridColumn width="6">
-        <h2>Bla bla</h2>
-      </GridColumn>
     </Grid>
   );
 })

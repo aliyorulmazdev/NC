@@ -114,7 +114,9 @@ export default observer(function ProductList() {
                   as={Link}
                   to={`/products/${product.id}`}
                   content="View"
-                  color="blue"
+                  color="green"
+                  size='mini'
+                  circular
                 />
               </Table.Cell>
               <Table.Cell>
@@ -124,6 +126,8 @@ export default observer(function ProductList() {
                   onClick={(e) => handleProductDelete(e, product.id)}
                   content="Delete"
                   color="red"
+                  size='mini'
+                  circular
                 />
               </Table.Cell>
             </Table.Row>
