@@ -13,17 +13,17 @@ export default observer(function ProductDashboard() {
 
   useEffect(() => {
     if (productRegistry.size <= 1) loadProducts();
-  }, [loadProducts]);
+  }, [loadProducts, productRegistry]);
 
   if (productStore.loadingInitial) return <LoadingComponent content="Loading App" />;
 
   return (
     <Grid>
-      <GridColumn width="10">
+      <GridColumn width="15">
         <ProductList />
       </GridColumn>
       <GridColumn width="6">
-        <h2>Product Filters</h2>
+        <h2>Bla bla</h2>
       </GridColumn>
     </Grid>
   );
