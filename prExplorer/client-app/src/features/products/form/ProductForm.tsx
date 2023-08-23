@@ -1,15 +1,14 @@
 import React, { ChangeEvent, useState } from "react";
 import { Button, Form, Segment } from "semantic-ui-react";
-import { Product } from "../../../app/models/product";
+import { useStore } from "../../../app/stores/store";
+import { observer } from "mobx-react-lite";
 
-interface Props {
-  product: Product | undefined;
-  closeForm: () => void;
-  createOrEdit: (product: Product) => void;
-  submitting: boolean;
-}
 
-export default function ProductForm({ product: selectedProduct, closeForm, createOrEdit, submitting }: Props) {
+export default observer(function ProductForm() {
+
+  const {productStore} = useStore();
+  const {selectedProduct, closeForm, createProduct, updateProduct, loading} = productStore;
+
   const initialState = selectedProduct ?? {
     id: "",
     title: "",
@@ -26,8 +25,7 @@ export default function ProductForm({ product: selectedProduct, closeForm, creat
   const [product, setProduct] = useState(initialState);
 
   function handleSubmit()  {
-    console.log(product);
-    createOrEdit(product);
+    product.id ?  updateProduct(product) : createProduct(product);
   }
 
   function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
@@ -47,7 +45,7 @@ export default function ProductForm({ product: selectedProduct, closeForm, creat
         <Form.Input placeholder="Brand" name='brand' value={product.brand} onChange={handleInputChange} />
         <Form.Input placeholder="Category" name='category' value={product.category} onChange={handleInputChange} />
         <Form.Input placeholder="Thumbnail" name='thumbnail' value={product.thumbnail} onChange={handleInputChange} />
-        <Button loading={submitting} floated="right" positive type="submit" content="Submit" onChange={handleInputChange} />
+        <Button loading={loading} floated="right" positive type="submit" content="Submit" onChange={handleInputChange} />
         <Button
           onClick={closeForm}
           floated="right"
@@ -57,4 +55,4 @@ export default function ProductForm({ product: selectedProduct, closeForm, creat
       </Form>
     </Segment>
   );
-}
+})
