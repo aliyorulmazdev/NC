@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "NCSUkqerA5Uz6sHyZErYPQKZl84um3DUBLwdaixDEPKfqsaJCPe/kXCyArzpdzC5bjNK7Scm9xSGAvhA3fJvaA==",
+  "dgSpecHash": "GfGMinMz4EkYYNSYiuSVYrlXAPQ6/ItuiZcdaJ6UZDEL24jLnfctDrYEtTcCh+y2VCSWxGNcvgSuOPqWDQjSiQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Ermat\\Documents\\NCRepo\\NC\\prExplorer\\API\\API.csproj",
+  "projectFilePath": "c:\\Users\\Ermat\\Documents\\NCRepo\\NC\\prExplorer\\API\\API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Ermat\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\Ermat\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

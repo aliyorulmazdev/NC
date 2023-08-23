@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Ermat\\Documents\\NCRepo\\NC\\prExplorer\\Application\\Application.csproj": {}
+    "c:\\Users\\Ermat\\Documents\\NCRepo\\NC\\prExplorer\\Application\\Application.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Ermat\\Documents\\NCRepo\\NC\\prExplorer\\Application\\Application.csproj": {
+    "c:\\Users\\Ermat\\Documents\\NCRepo\\NC\\prExplorer\\Application\\Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ermat\\Documents\\NCRepo\\NC\\prExplorer\\Application\\Application.csproj",
+        "projectUniqueName": "c:\\Users\\Ermat\\Documents\\NCRepo\\NC\\prExplorer\\Application\\Application.csproj",
         "projectName": "Application",
-        "projectPath": "C:\\Users\\Ermat\\Documents\\NCRepo\\NC\\prExplorer\\Application\\Application.csproj",
+        "projectPath": "c:\\Users\\Ermat\\Documents\\NCRepo\\NC\\prExplorer\\Application\\Application.csproj",
         "packagesPath": "C:\\Users\\Ermat\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ermat\\Documents\\NCRepo\\NC\\prExplorer\\Application\\obj\\",
+        "outputPath": "c:\\Users\\Ermat\\Documents\\NCRepo\\NC\\prExplorer\\Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -32,8 +32,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\Ermat\\Documents\\NCRepo\\NC\\prExplorer\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\Ermat\\Documents\\NCRepo\\NC\\prExplorer\\Domain\\Domain.csproj"
+              "c:\\Users\\Ermat\\Documents\\NCRepo\\NC\\prExplorer\\Domain\\Domain.csproj": {
+                "projectPath": "c:\\Users\\Ermat\\Documents\\NCRepo\\NC\\prExplorer\\Domain\\Domain.csproj"
               },
               "c:\\Users\\Ermat\\Documents\\NCRepo\\NC\\prExplorer\\Persistence\\Persistence.csproj": {
                 "projectPath": "c:\\Users\\Ermat\\Documents\\NCRepo\\NC\\prExplorer\\Persistence\\Persistence.csproj"
@@ -87,14 +87,14 @@
         }
       }
     },
-    "C:\\Users\\Ermat\\Documents\\NCRepo\\NC\\prExplorer\\Domain\\Domain.csproj": {
+    "c:\\Users\\Ermat\\Documents\\NCRepo\\NC\\prExplorer\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ermat\\Documents\\NCRepo\\NC\\prExplorer\\Domain\\Domain.csproj",
+        "projectUniqueName": "c:\\Users\\Ermat\\Documents\\NCRepo\\NC\\prExplorer\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\Ermat\\Documents\\NCRepo\\NC\\prExplorer\\Domain\\Domain.csproj",
+        "projectPath": "c:\\Users\\Ermat\\Documents\\NCRepo\\NC\\prExplorer\\Domain\\Domain.csproj",
         "packagesPath": "C:\\Users\\Ermat\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ermat\\Documents\\NCRepo\\NC\\prExplorer\\Domain\\obj\\",
+        "outputPath": "c:\\Users\\Ermat\\Documents\\NCRepo\\NC\\prExplorer\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -177,8 +177,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\Ermat\\Documents\\NCRepo\\NC\\prExplorer\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\Ermat\\Documents\\NCRepo\\NC\\prExplorer\\Domain\\Domain.csproj"
+              "c:\\Users\\Ermat\\Documents\\NCRepo\\NC\\prExplorer\\Domain\\Domain.csproj": {
+                "projectPath": "c:\\Users\\Ermat\\Documents\\NCRepo\\NC\\prExplorer\\Domain\\Domain.csproj"
               }
             }
           }
