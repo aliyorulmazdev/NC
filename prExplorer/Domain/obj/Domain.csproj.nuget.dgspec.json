@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Ermat\\Documents\\NCRepo\\NC\\prExplorer\\Domain\\Domain.csproj": {}
+    "c:\\Users\\Ermat\\Documents\\NCRepo\\NC\\prExplorer\\Domain\\Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Ermat\\Documents\\NCRepo\\NC\\prExplorer\\Domain\\Domain.csproj": {
+    "c:\\Users\\Ermat\\Documents\\NCRepo\\NC\\prExplorer\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ermat\\Documents\\NCRepo\\NC\\prExplorer\\Domain\\Domain.csproj",
+        "projectUniqueName": "c:\\Users\\Ermat\\Documents\\NCRepo\\NC\\prExplorer\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\Ermat\\Documents\\NCRepo\\NC\\prExplorer\\Domain\\Domain.csproj",
+        "projectPath": "c:\\Users\\Ermat\\Documents\\NCRepo\\NC\\prExplorer\\Domain\\Domain.csproj",
         "packagesPath": "C:\\Users\\Ermat\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ermat\\Documents\\NCRepo\\NC\\prExplorer\\Domain\\obj\\",
+        "outputPath": "c:\\Users\\Ermat\\Documents\\NCRepo\\NC\\prExplorer\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

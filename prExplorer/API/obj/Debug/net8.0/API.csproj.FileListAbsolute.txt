@@ -241,3 +241,6 @@ C:\Users\Ermat\Documents\NCRepo\NC\prExplorer\API\obj\Debug\net8.0\refint\API.dl
 C:\Users\Ermat\Documents\NCRepo\NC\prExplorer\API\obj\Debug\net8.0\API.pdb
 c:\Users\Ermat\Documents\NCRepo\NC\prExplorer\API\obj\Debug\net8.0\API.genruntimeconfig.cache
 c:\Users\Ermat\Documents\NCRepo\NC\prExplorer\API\obj\Debug\net8.0\ref\API.dll
+C:\Users\Ermat\Documents\NCRepo\NC\prExplorer\API\bin\Debug\net8.0\FluentValidation.dll
+C:\Users\Ermat\Documents\NCRepo\NC\prExplorer\API\bin\Debug\net8.0\FluentValidation.AspNetCore.dll
+C:\Users\Ermat\Documents\NCRepo\NC\prExplorer\API\bin\Debug\net8.0\FluentValidation.DependencyInjectionExtensions.dll

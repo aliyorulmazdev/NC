@@ -1,11 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "mKY91T5RZEePR+ftd2ShlwEJKEb7HLBHW0705EaF8datEbN4vPgxwrFTSanBGhBcwRFHSDSVyzhV6XhVtQ53yw==",
+  "dgSpecHash": "zCfga2lkFThNUGgnlQgyehkBGZcgetjt5Lc4jlfcTRALznFCgIc/8SILOJT3nrHGMxShZZdt7VuWwbMQv5qQ8Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Ermat\\Documents\\NCRepo\\NC\\prExplorer\\Application\\Application.csproj",
+  "projectFilePath": "c:\\Users\\Ermat\\Documents\\NCRepo\\NC\\prExplorer\\Application\\Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Ermat\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\Ermat\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
+    "C:\\Users\\Ermat\\.nuget\\packages\\fluentvalidation\\11.5.1\\fluentvalidation.11.5.1.nupkg.sha512",
+    "C:\\Users\\Ermat\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.3.0\\fluentvalidation.aspnetcore.11.3.0.nupkg.sha512",
+    "C:\\Users\\Ermat\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.5.1\\fluentvalidation.dependencyinjectionextensions.11.5.1.nupkg.sha512",
     "C:\\Users\\Ermat\\.nuget\\packages\\mediatr\\11.0.0\\mediatr.11.0.0.nupkg.sha512",
     "C:\\Users\\Ermat\\.nuget\\packages\\mediatr.contracts\\1.0.1\\mediatr.contracts.1.0.1.nupkg.sha512",
     "C:\\Users\\Ermat\\.nuget\\packages\\mediatr.extensions.microsoft.dependencyinjection\\11.1.0\\mediatr.extensions.microsoft.dependencyinjection.11.1.0.nupkg.sha512",
