@@ -12,7 +12,7 @@ export default observer(function ProductDashboard() {
   const {loadProducts, productRegistry} = productStore;
 
   useEffect(() => {
-    if (productRegistry.size <= 1) loadProducts();
+    if (productRegistry.size <= 1) productStore.loadProducts();
   }, [loadProducts, productRegistry]);
 
   if (productStore.loadingInitial) return <LoadingComponent content="Loading App" />;
