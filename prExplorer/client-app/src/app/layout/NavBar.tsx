@@ -13,6 +13,7 @@ export default function NavBar() {
             prExplorer
             </Menu.Item>
         <Menu.Item name='Products' as={NavLink} to='/products' />
+        <Menu.Item name='Errors' as={NavLink} to='/errors' />
         <Menu.Item header>
             <Button as={NavLink} to='/createProduct' positive content='Create Product' />
         </Menu.Item>
