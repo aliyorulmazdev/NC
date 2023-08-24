@@ -13,7 +13,7 @@ export default observer(function ProductDashboard() {
 
   useEffect(() => {
     if (productRegistry.size <= 1) productStore.loadProducts();
-  }, [loadProducts, productRegistry]);
+  }, [loadProducts, productRegistry, productStore]);
 
   if (productStore.loadingInitial) return <LoadingComponent content="Loading App" />;
 
