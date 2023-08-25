@@ -2,6 +2,7 @@ import { makeAutoObservable, runInAction } from "mobx";
 import { Product } from "../models/product";
 import agent from "../api/agent";
 import { v4 as uuid } from "uuid";
+import { toast } from "react-toastify";
 
 export default class ProductStore {
   productRegistry = new Map<string, Product>();
@@ -80,6 +81,7 @@ export default class ProductStore {
         this.selectedProduct = product;
         this.editMode = false;
         this.loading = false;
+        toast.success("Succesfully Created Product");
       });
     } catch (error) {
       console.log(error);
@@ -98,6 +100,7 @@ export default class ProductStore {
         this.selectedProduct = product;
         this.editMode = false;
         this.loading = false;
+        toast.success("Succesfully Edited Product");
       });
     } catch (error) {
       console.log(error);
@@ -114,6 +117,7 @@ export default class ProductStore {
       runInAction(() => {
         this.productRegistry.delete(id);
         this.loading = false;
+        toast.success("Succesfully Deleted Product");
       });
     } catch (error) {
       console.log(error);
