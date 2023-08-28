@@ -8,6 +8,7 @@ using Persistence;
 
 namespace API.Controllers
 {
+    [AllowAnonymous]
     public class ProductsController : BaseApiController
     {
         [HttpGet]
@@ -34,7 +35,6 @@ namespace API.Controllers
             product.Id = id;
             return HandleResult(await Mediator.Send(new Edit.Command { Product = product }));
         }
-
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProduct(Guid id)
         {

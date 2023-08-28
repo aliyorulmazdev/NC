@@ -10,8 +10,6 @@ namespace API.Services
 {
     public class TokenService
     {
-        // Replace "YourSuperSecretKeyHere" with your actual secret key
-        private const string SecretKey = "0000000000000000000000000000000000000000000000000000000000000000"; // 64 bytes
         private readonly IConfiguration _config;
 
         public TokenService(IConfiguration config)
