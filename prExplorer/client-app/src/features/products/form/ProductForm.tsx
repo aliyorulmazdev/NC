@@ -1,16 +1,21 @@
-import React, { ChangeEvent, useEffect, useState } from "react";
-import { Button, Form, Segment } from "semantic-ui-react";
+import React, { useEffect, useState } from "react";
+import { Button, Header, Segment } from "semantic-ui-react";
 import { useStore } from "../../../app/stores/store";
 import { observer } from "mobx-react-lite";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Product } from "../../../app/models/product";
 import LoadingComponent from "../../../app/layout/LoadingComponent";
 import { v4 as uuid } from "uuid";
+import { Formik, Form } from "formik";
+import * as Yup from "yup";
+import CustomTextInput from "../../../app/common/form/CustomTextInput";
+import CustomTextArea from "../../../app/common/form/CustomTextArea";
+import CustomSelectInput from "../../../app/common/form/CustomSelectInput";
+import { categoryOptions } from "../../../app/common/options/categoryOptions";
 
 export default observer(function ProductForm() {
   const { productStore } = useStore();
   const {
-    // selectedProduct,
     createProduct,
     updateProduct,
     loading,
@@ -33,11 +38,22 @@ export default observer(function ProductForm() {
     thumbnail: "",
   });
 
+  const validationScheme = Yup.object({
+    title: Yup.string().required("The title field is required for product"),
+    description: Yup.string().required(
+      "The description is required for product"
+    ),
+    price: Yup.string().required("Price field is required for product"),
+    stock: Yup.number().required("Stock field is required for product"),
+    brand: Yup.string().required("Brand field is required for product"),
+    category: Yup.string().required("Category field is required for product"),
+  });
+
   useEffect(() => {
     if (id) loadProduct(id).then((product) => setProduct(product!));
   }, [id, loadProduct]);
 
-  function handleSubmit() {
+  function handleFormSubmit(product: Product) {
     if (!product.id) {
       product.id = uuid();
       createProduct(product).then(() => navigate(`/products/${product.id}`));
@@ -46,86 +62,61 @@ export default observer(function ProductForm() {
     }
   }
 
-  function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
-    const { name, value } = event.target;
-    setProduct({ ...product, [name]: value });
-  }
-
   if (loadingInitial) return <LoadingComponent content="Loading product..." />;
 
   return (
     <Segment clearing>
-      <Form onSubmit={handleSubmit} autoComplete="off">
-        <Form.Input
-          placeholder="Title"
-          name="title"
-          value={product.title}
-          onChange={handleInputChange}
-        />
-        <Form.Input
-          placeholder="Description"
-          name="description"
-          value={product.description}
-          onChange={handleInputChange}
-        />
-        <Form.Input
-          placeholder="Price"
-          name="price"
-          value={product.price}
-          onChange={handleInputChange}
-        />
-        <Form.Input
-          placeholder="DiscountPercentage"
-          name="discountPercentage"
-          value={product.discountPercentage}
-          onChange={handleInputChange}
-        />
-        <Form.Input
-          placeholder="Rating"
-          name="rating"
-          value={product.rating}
-          onChange={handleInputChange}
-        />
-        <Form.Input
-          placeholder="Stock"
-          name="stock"
-          value={product.stock}
-          onChange={handleInputChange}
-        />
-        <Form.Input
-          placeholder="Brand"
-          name="brand"
-          value={product.brand}
-          onChange={handleInputChange}
-        />
-        <Form.Input
-          placeholder="Category"
-          name="category"
-          value={product.category}
-          onChange={handleInputChange}
-        />
-        <Form.Input
-          placeholder="Thumbnail"
-          name="thumbnail"
-          value={product.thumbnail}
-          onChange={handleInputChange}
-        />
-        <Button
-          loading={loading}
-          floated="right"
-          positive
-          type="submit"
-          content="Submit"
-          onChange={handleInputChange}
-        />
-        <Button
-          as={Link}
-          to="/products"
-          floated="right"
-          type="button"
-          content="Cancel"
-        />
-      </Form>
+      <Header  content='Product Details' sub color='orange'/>
+      <Formik
+        validationSchema={validationScheme}
+        initialValues={product}
+        enableReinitialize
+        onSubmit={(values) => handleFormSubmit(values)}
+      >
+        {({ handleSubmit, isValid, isSubmitting, dirty }) => (
+          <Form
+            className="ui form"
+            onSubmit={(values) => handleSubmit(values)}
+            autoComplete="off"
+          >
+            <CustomTextInput name="title" placeholder="title" />
+            <CustomTextArea
+              rows={3}
+              placeholder="Description"
+              name="description"
+            />
+            <CustomTextInput placeholder="Price" name="price" />
+            <CustomTextInput
+              placeholder="DiscountPercentage"
+              name="discountPercentage"
+            />
+            <CustomTextInput placeholder="Rating" name="rating" />
+            <CustomTextInput placeholder="Stock" name="stock" />
+            <CustomTextInput placeholder="Brand" name="brand" />
+            <CustomSelectInput
+              options={categoryOptions}
+              placeholder="Category"
+              name="category"
+            />
+            <CustomTextInput placeholder="Thumbnail" name="thumbnail" />
+            <Button
+            disabled={isSubmitting || !dirty || !isValid}
+              loading={loading}
+              floated="right"
+              positive
+              type="submit"
+              content="Submit"
+            />
+            <Button
+              as={Link}
+              to="/products"
+              floated="right"
+              type="button"
+              content="Cancel"
+            />
+          </Form>
+        )}
+      </Formik>
     </Segment>
   );
 });
