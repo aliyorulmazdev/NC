@@ -9,7 +9,7 @@ interface CustomTextAreaProps {
     label?: string;
 }
 
-export default function CustomTextInput(customTextAreaProps: CustomTextAreaProps) {
+export default function CustomTextArea(customTextAreaProps: CustomTextAreaProps) {
     const [field, meta] = useField(customTextAreaProps.name);
     return (
         <Form.Field error={meta.touched && !!meta.error}>

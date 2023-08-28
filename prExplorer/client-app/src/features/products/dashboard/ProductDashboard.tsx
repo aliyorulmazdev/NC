@@ -15,7 +15,7 @@ export default observer(function ProductDashboard() {
     if (productRegistry.size <= 1) productStore.loadProducts();
   }, [loadProducts, productRegistry, productStore]);
 
-  if (productStore.loadingInitial) return <LoadingComponent content="Loading App" />;
+  if (productStore.loadingInitial) return <LoadingComponent content="Loading Products" />;
 
   return (
     <Grid>
