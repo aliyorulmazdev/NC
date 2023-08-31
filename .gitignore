@@ -1,2 +1,9 @@
 prExplorer/Persistence/obj/Debug/net8.0/Persistence.GeneratedMSBuildEditorConfig.editorconfig
 prExplorer/API/obj/Debug/net8.0/API.GeneratedMSBuildEditorConfig.editorconfig
+prExplorer/API/prExplorer.db
+prExplorer/Domain/obj/Debug/net8.0/Domain.AssemblyInfo.cs
+prExplorer/Domain/obj/Debug/net8.0/Domain.AssemblyInfoInputs.cache
+prExplorer/Domain/obj/Debug/net8.0/Domain.GeneratedMSBuildEditorConfig.editorconfig
+.gitignore
+prExplorer/Persistence/obj/Debug/net8.0/Persistence.AssemblyInfoInputs.cache
+.gitignore

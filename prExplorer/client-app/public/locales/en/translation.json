@@ -1,0 +1,9 @@
+{
+	"createProduct": "Create Product",
+	"errors": "Errors",
+	"product": {
+		"name": "Product Name",
+		"price": "Product Price"
+	},
+	"products": "Products"
+}
