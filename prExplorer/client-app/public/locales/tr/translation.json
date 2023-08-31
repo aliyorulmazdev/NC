@@ -1,6 +1,9 @@
 {
-    "products": "Ürünler",
-    "errors": "Erörler",
-    "createProduct": "Ürün Oluştur"
-
+	"createProduct": "Ürün oluştur",
+	"errors": "Hata",
+	"product": {
+		"name": "Ürün adı",
+		"price": "Ürün fiyatı"
+	},
+	"products": "Ürünler"
 }
