@@ -1,5 +1,6 @@
 using Domain;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.VisualBasic;
 
 namespace Persistence
 {
@@ -22,7 +23,8 @@ namespace Persistence
             }
 
             if (context.Products.Any()) return;
-
+            var dawid = await userManager.FindByNameAsync("Dawid");
+            var ali = await userManager.FindByNameAsync("Ali");
             var products = new List<Product>
         {
             new Product
@@ -36,6 +38,7 @@ namespace Persistence
                 Brand = "Dior",
                 Category = "Aksesuar",
                 Thumbnail = "https://static.ticimax.cloud/56311/uploads/urunresimleri/buyuk/dior-deri-siyah-canta--bbdb-.jpeg",
+                appUserId = ali.Id
             },
             new Product
             {
@@ -48,6 +51,7 @@ namespace Persistence
                 Brand = "Gucci",
                 Category = "Giyim",
                 Thumbnail = "https://kiyafetsepeti.com.tr/Content/ProductImage/Original/638092143829719650-IMG_3659.jpeg",
+                appUserId = ali.Id
             },
             new Product
             {
@@ -60,6 +64,7 @@ namespace Persistence
                 Brand = "Vakko",
                 Category = "Aksesuar",
                 Thumbnail = "https://images.gardrops.com/uploads/5425711/user_items/542571207-s1-file-618668ac62b29.jpeg",
+                appUserId = ali.Id
             },
             new Product
             {
@@ -72,6 +77,7 @@ namespace Persistence
                 Brand = "Mavi",
                 Category = "Giyim",
                 Thumbnail = "https://static.ticimax.cloud/30682/uploads/urunresimleri/buyuk/denim-republic-erkek-mavi-regular-fit---f5b60.jpg",
+                appUserId = ali.Id
             },
             new Product
             {
@@ -84,6 +90,7 @@ namespace Persistence
                 Brand = "Cotton",
                 Category = "Giyim",
                 Thumbnail = "https://img-morhipo.mncdn.com/mnresize/1200/1645/productimages/ii/8681872499455/[img][5][1].jpg?1919",
+                appUserId = ali.Id
             },
             new Product
             {
@@ -96,6 +103,7 @@ namespace Persistence
                 Brand = "Converse",
                 Category = "Ayakkabı",
                 Thumbnail = "https://images.journeys.com/images/products/1_609460_FS_ALT1C.JPG",
+                appUserId = dawid.Id
             },
             new Product
             {
@@ -108,6 +116,7 @@ namespace Persistence
                 Brand = "Mavi",
                 Category = "Giyim",
                 Thumbnail = "https://m.media-amazon.com/images/I/61Ueq2+MqUL._AC_UF1000,1000_QL80_.jpg",
+                appUserId = dawid.Id
             },
             new Product
             {
@@ -120,6 +129,7 @@ namespace Persistence
                 Brand = "Adidas",
                 Category = "Ayakkabı",
                 Thumbnail = "https://anindigoday.com/wp-content/uploads/2016/03/adidas-originals-street-style-My-Style-Vita-@mystylevita-31.webp",
+                appUserId = dawid.Id
             },
             new Product
             {
@@ -132,6 +142,7 @@ namespace Persistence
                 Brand = "Mavi",
                 Category = "Tshirt",
                 Thumbnail = "https://sky-static.mavi.com/sys-master/maviTrImages/h65/h2c/10074340327454/1610622-620_image_1.jpg_Default-ZoomProductImage",
+                appUserId = dawid.Id
             },
             new Product
             {
@@ -144,6 +155,7 @@ namespace Persistence
                 Brand = "Polo",
                 Category = "Giyim",
                 Thumbnail = "https://skcfiles.mncdn.com/livephotos/8/S211800-600/679-10.jpg",
+                appUserId = dawid.Id
             }
         };
 

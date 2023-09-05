@@ -1,8 +1,10 @@
 using Application.Core;
+using Application.Interfaces;
 using AutoMapper;
 using Domain;
 using FluentValidation;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Persistence;
 
 namespace Application.Products
@@ -25,16 +27,31 @@ namespace Application.Products
         {
             private readonly DataContext _context;
             private readonly IMapper _mapper;
-            public Handler(DataContext context, IMapper mapper)
+            private readonly IUserAccessor _userAccessor;
+            public Handler(DataContext context, IMapper mapper, IUserAccessor userAccessor)
             {
+                _userAccessor = userAccessor;
                 _mapper = mapper;
                 _context = context;
             }
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
-                var product = await _context.Products.FindAsync(request.Product.Id);
+                var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == _userAccessor.GetUserId());
+
+                if (user == null)
+                {
+                    // Eğer kullanıcı bulunamazsa hata işleme.
+                    return Result<Unit>.Failure("Kullanıcı bulunamadı.");
+                }
+
+                var product = await _context.Products
+                    .Where(x => x.appUserId == user.Id && request.Product.Id == x.Id).FirstOrDefaultAsync();
+
                 if (product == null) return null;
+
                 _mapper.Map(request.Product, product);
+                product.appUserId = _userAccessor.GetUserId();
+                product.AppUser = user;
                 var result = await _context.SaveChangesAsync() > 0;
                 if (!result) return Result<Unit>.Failure("Failed to update product");
                 return Result<Unit>.Success(Unit.Value);

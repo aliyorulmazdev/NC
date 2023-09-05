@@ -36,6 +36,7 @@ export default observer(function ProductForm() {
     brand: "",
     category: "",
     thumbnail: "",
+    appUserId: "",
   });
 
   const validationScheme = Yup.object({

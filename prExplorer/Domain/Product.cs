@@ -12,6 +12,7 @@ public class Product
     public string Brand { get; set; }
     public string Category { get; set; }
     public string Thumbnail { get; set; }
-    // public List<string> Images { get; set; }
+    public string appUserId { get; set; }
+    public AppUser AppUser { get; set; }
 }
 }
