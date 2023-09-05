@@ -1,6 +1,7 @@
 using Application.Core;
 using Application.Interfaces;
 using Application.Products;
+using ApplicationTests;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Infrastructure.Security;
@@ -30,7 +31,8 @@ namespace API.Extensions
                 });
             });
             //MediatR
-            services.AddMediatR(typeof(List.Handler));
+            services.AddMediatR(typeof(GetAllProductsTest.Handler));
+            services.AddMediatR(typeof(GetAllProducts.Handler));
             services.AddMediatR(typeof(Create.Handler));
             services.AddMediatR(typeof(Edit.Handler));
             services.AddMediatR(typeof(Details.Handler));

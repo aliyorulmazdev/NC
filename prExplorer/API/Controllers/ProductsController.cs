@@ -1,4 +1,5 @@
 using Application.Products;
+using ApplicationTests;
 using Domain;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,7 +10,7 @@ namespace API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetProducts()
         {
-            return HandleResult(await Mediator.Send(new List.Query()));
+            return HandleResult(await Mediator.Send(new GetAllProducts.Query()));
         }
 
         [HttpGet("{id}")]
