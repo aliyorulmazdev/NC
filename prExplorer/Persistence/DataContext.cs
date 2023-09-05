@@ -1,3 +1,4 @@
+using Application.Interfaces;
 using Domain;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -10,7 +11,6 @@ namespace Persistence
         {
         }
 
-        public DbSet<Product> Products { get; set;}
-
+        public DbSet<Product> Products { get; set; }
     }
 }

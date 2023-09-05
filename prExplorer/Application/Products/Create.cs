@@ -27,11 +27,13 @@ namespace Application.Products
         {
             private readonly DataContext _context;
             private readonly IUserAccessor _userAccessor;
+
             public Handler(DataContext context, IUserAccessor userAccessor)
             {
                 _userAccessor = userAccessor;
                 _context = context;
             }
+
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
                 var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == _userAccessor.GetUserId());
@@ -44,13 +46,12 @@ namespace Application.Products
                 var pro = request.Product;
                 pro.AppUser = user;
                 pro.appUserId = _userAccessor.GetUserId();
-                
+
                 _context.Products.Add(request.Product);
                 var result = await _context.SaveChangesAsync() > 0;
                 if (!result) return Result<Unit>.Failure("Failed to create product");
                 return Result<Unit>.Success(Unit.Value);
             }
         }
-
     }
 }

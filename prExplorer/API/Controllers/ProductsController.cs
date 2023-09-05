@@ -1,10 +1,6 @@
 using Application.Products;
 using Domain;
-using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Persistence;
 
 namespace API.Controllers
 {
@@ -34,11 +30,11 @@ namespace API.Controllers
             product.Id = id;
             return HandleResult(await Mediator.Send(new Edit.Command { Product = product }));
         }
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProduct(Guid id)
         {
             return HandleResult(await Mediator.Send(new Delete.Command { Id = id }));
         }
-
     }
 }

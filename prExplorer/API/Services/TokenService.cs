@@ -1,10 +1,8 @@
-using System;
-using System.Collections.Generic;
+using Domain;
+using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using Domain;
-using Microsoft.IdentityModel.Tokens;
 
 namespace API.Services
 {
@@ -14,9 +12,8 @@ namespace API.Services
 
         public TokenService(IConfiguration config)
         {
-            _config = config;            
+            _config = config;
         }
-
 
         public string CreateToken(AppUser user)
         {

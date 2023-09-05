@@ -1,6 +1,5 @@
 using Application.Core;
 using MediatR;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -21,7 +20,6 @@ namespace API.Controllers
             if (result.isSuccess && result.Value == null)
                 return NotFound();
             return BadRequest(result.Error);
-
         }
     }
 }

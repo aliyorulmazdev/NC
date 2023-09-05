@@ -11,6 +11,6 @@ namespace Application.Products
         public int Stock { get; set; }
         public string Brand { get; set; }
         public string Category { get; set; }
-        public string Thumbnail { get; set; } 
+        public string Thumbnail { get; set; }
     }
 }
