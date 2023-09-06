@@ -58,7 +58,38 @@ namespace API.Controllers
             {
                 DisplayName = registerDto.DisplayName,
                 UserName = registerDto.Username,
-                Email = registerDto.Email
+                Email = registerDto.Email,
+                Categories = new List<Category>
+                {
+                    new Category
+                {
+                    Title = "Clothes",
+                    Description = "",
+                    Thumbnail = "",
+                    AppUserId = "test"
+                },
+                new Category
+                {
+                    Title = "Shoes",
+                    Description = "",
+                    Thumbnail = "",
+                    AppUserId = "test"
+                },
+                new Category
+                {
+                    Title = "Accessories",
+                    Description = "",
+                    Thumbnail = "",
+                    AppUserId = "test"
+                },
+                new Category
+                {
+                    Title = "Watches",
+                    Description = "",
+                    Thumbnail = "",
+                    AppUserId = "test"
+                }
+                }
             };
 
             var result = await _userManager.CreateAsync(user, registerDto.Password);

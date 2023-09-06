@@ -7,20 +7,22 @@ namespace Persistence
 {
     public class DataContext : IdentityDbContext<AppUser>
     {
-        public DataContext(DbContextOptions options, IUserAccessor accessor) : base(options)
+        public IUserAccessor _accessor { get; }
+
+        public DataContext(DbContextOptions options) : base(options)
         {
-            _accessor = accessor;
+
         }
-        public DataContext(DbContextOptions options) : base(options) { }
 
         public DbSet<Product> Products { get; set; }
-        public IUserAccessor _accessor { get; }
+        public DbSet<Category> Categories { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Product>().HasQueryFilter(p => p.appUserId == _accessor.GetUserId());
+            modelBuilder.Entity<Product>().HasQueryFilter(p => p.AppUserId == _accessor.GetUserId());
+            modelBuilder.Entity<Category>().HasQueryFilter(p => p.AppUserId == _accessor.GetUserId());
         }
     }
 }

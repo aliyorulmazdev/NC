@@ -12,7 +12,7 @@ namespace Domain
         public string Brand { get; set; }
         public string Category { get; set; }
         public string Thumbnail { get; set; }
-        public string appUserId { get; set; }
+        public string AppUserId { get; set; }
         public AppUser AppUser { get; set; }
     }
 }

@@ -1,39 +1,36 @@
 using Application.Core;
 using Application.Interfaces;
-using AutoMapper;
 using Domain;
 using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 
-namespace Application.Products
+namespace Application.Categories
 {
-    public class Edit
+    public class Create
     {
         public class Command : IRequest<Result<Unit>>
         {
-            public Product Product { get; set; }
+            public Category Category { get; set; }
         }
 
         public class CommandValidator : AbstractValidator<Command>
         {
             public CommandValidator()
             {
-                RuleFor(x => x.Product).SetValidator(new ProductValidator());
+                RuleFor(x => x.Category).SetValidator(new CategoryValidator());
             }
         }
 
         public class Handler : IRequestHandler<Command, Result<Unit>>
         {
             private readonly DataContext _context;
-            private readonly IMapper _mapper;
             private readonly IUserAccessor _userAccessor;
 
-            public Handler(DataContext context, IMapper mapper, IUserAccessor userAccessor)
+            public Handler(DataContext context, IUserAccessor userAccessor)
             {
                 _userAccessor = userAccessor;
-                _mapper = mapper;
                 _context = context;
             }
 
@@ -46,15 +43,13 @@ namespace Application.Products
                     return Result<Unit>.Failure("Kullanıcı bulunamadı.");
                 }
 
-                var product = await _context.Products.Where(x => x.Id == request.Product.Id).FirstOrDefaultAsync();
+                var pro = request.Category;
+                pro.AppUser = user;
+                pro.AppUserId = _userAccessor.GetUserId();
 
-                if (product == null) return null;
-
-                _mapper.Map(request.Product, product);
-                product.AppUserId = _userAccessor.GetUserId();
-                product.AppUser = user;
+                _context.Categories.Add(request.Category);
                 var result = await _context.SaveChangesAsync() > 0;
-                if (!result) return Result<Unit>.Failure("Failed to update product");
+                if (!result) return Result<Unit>.Failure("Failed to create category");
                 return Result<Unit>.Success(Unit.Value);
             }
         }

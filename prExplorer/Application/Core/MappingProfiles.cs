@@ -1,3 +1,4 @@
+using Application.Categories;
 using Application.Products;
 using AutoMapper;
 using Domain;
@@ -10,6 +11,9 @@ namespace Application.Core
         {
             CreateMap<Product, Product>();
             CreateMap<Product, ProductDto>();
+
+            CreateMap<Category, Category>();
+            CreateMap<Category, CategoryDto>();
         }
     }
 }

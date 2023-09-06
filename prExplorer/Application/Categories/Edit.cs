@@ -7,20 +7,20 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 
-namespace Application.Products
+namespace Application.Categories
 {
     public class Edit
     {
         public class Command : IRequest<Result<Unit>>
         {
-            public Product Product { get; set; }
+            public Category Category { get; set; }
         }
 
         public class CommandValidator : AbstractValidator<Command>
         {
             public CommandValidator()
             {
-                RuleFor(x => x.Product).SetValidator(new ProductValidator());
+                RuleFor(x => x.Category).SetValidator(new CategoryValidator());
             }
         }
 
@@ -46,15 +46,15 @@ namespace Application.Products
                     return Result<Unit>.Failure("Kullanıcı bulunamadı.");
                 }
 
-                var product = await _context.Products.Where(x => x.Id == request.Product.Id).FirstOrDefaultAsync();
+                var category = await _context.Categories.Where(x => x.Id == request.Category.Id).FirstOrDefaultAsync();
 
-                if (product == null) return null;
+                if (category == null) return null;
 
-                _mapper.Map(request.Product, product);
-                product.AppUserId = _userAccessor.GetUserId();
-                product.AppUser = user;
+                _mapper.Map(request.Category, category);
+                category.AppUserId = _userAccessor.GetUserId();
+                category.AppUser = user;
                 var result = await _context.SaveChangesAsync() > 0;
-                if (!result) return Result<Unit>.Failure("Failed to update product");
+                if (!result) return Result<Unit>.Failure("Failed to update category");
                 return Result<Unit>.Success(Unit.Value);
             }
         }

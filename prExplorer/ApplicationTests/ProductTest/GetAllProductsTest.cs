@@ -5,19 +5,15 @@ using AutoMapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ApplicationTests
+namespace ApplicationTests.ProductTest
 {
-
     public class GetAllProductsTest
     {
         public class Query : IRequest<Result<List<ProductDto>>>
-        { }
+        {
+
+        }
 
         public class Handler : IRequestHandler<Query, Result<List<ProductDto>>>
         {
@@ -35,7 +31,7 @@ namespace ApplicationTests
             public async Task<Result<List<ProductDto>>> Handle(Query request, CancellationToken cancellationToken)
             {
                 var productsReturned = _mapper.Map<List<ProductDto>>(await _context.Products
-                    .Where(x => x.appUserId == _userAccessor.GetUserId())
+                    .Where(x => x.AppUserId == _userAccessor.GetUserId())
                     .IgnoreQueryFilters()
                     .ToListAsync(cancellationToken));
 
@@ -43,4 +39,4 @@ namespace ApplicationTests
             }
         }
     }
-    }
+}

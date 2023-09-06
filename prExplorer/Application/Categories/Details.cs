@@ -4,16 +4,16 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 
-namespace Application.Products
+namespace Application.Categories
 {
     public class Details
     {
-        public class Query : IRequest<Result<ProductDto>>
+        public class Query : IRequest<Result<CategoryDto>>
         {
             public Guid Id { get; set; }
         }
 
-        public class Handler : IRequestHandler<Query, Result<ProductDto>>
+        public class Handler : IRequestHandler<Query, Result<CategoryDto>>
         {
             private readonly DataContext _context;
             private readonly IMapper _mapper;
@@ -24,10 +24,10 @@ namespace Application.Products
                 _context = context;
             }
 
-            public async Task<Result<ProductDto>> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<Result<CategoryDto>> Handle(Query request, CancellationToken cancellationToken)
             {
-                var productsReturned = _mapper.Map<ProductDto>(await _context.Products.Where(x => x.Id == request.Id).FirstOrDefaultAsync());
-                return Result<ProductDto>.Success(productsReturned);
+                var categoriesReturned = _mapper.Map<CategoryDto>(await _context.Categories.Where(x => x.Id == request.Id).FirstOrDefaultAsync());
+                return Result<CategoryDto>.Success(categoriesReturned);
             }
         }
     }

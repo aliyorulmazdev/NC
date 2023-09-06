@@ -45,7 +45,7 @@ namespace Application.Products
 
                 var pro = request.Product;
                 pro.AppUser = user;
-                pro.appUserId = _userAccessor.GetUserId();
+                pro.AppUserId = _userAccessor.GetUserId();
 
                 _context.Products.Add(request.Product);
                 var result = await _context.SaveChangesAsync() > 0;
