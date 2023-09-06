@@ -124,7 +124,7 @@ namespace Persistence.Migrations
                     b.Property<string>("Brand")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Category")
+                    b.Property<Guid>("CategoryId")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Description")
@@ -151,6 +151,8 @@ namespace Persistence.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AppUserId");
+
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
                 });
@@ -298,7 +300,15 @@ namespace Persistence.Migrations
                         .WithMany("Products")
                         .HasForeignKey("AppUserId");
 
+                    b.HasOne("Domain.Category", "Category")
+                        .WithMany("Products")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("AppUser");
+
+                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -356,6 +366,11 @@ namespace Persistence.Migrations
                 {
                     b.Navigation("Categories");
 
+                    b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("Domain.Category", b =>
+                {
                     b.Navigation("Products");
                 });
 #pragma warning restore 612, 618

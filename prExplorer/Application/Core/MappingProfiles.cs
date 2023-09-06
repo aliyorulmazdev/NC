@@ -9,10 +9,9 @@ namespace Application.Core
     {
         public MappingProfiles()
         {
-            CreateMap<Product, Product>();
-            CreateMap<Product, ProductDto>();
+            CreateMap<Product, ProductDto>()
+                .ForMember(dest => dest.Category, opt => opt.MapFrom(src => src.Category.Title));
 
-            CreateMap<Category, Category>();
             CreateMap<Category, CategoryDto>();
         }
     }

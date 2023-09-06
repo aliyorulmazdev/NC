@@ -11,7 +11,11 @@ namespace Persistence
 
         public DataContext(DbContextOptions options) : base(options)
         {
+        }
 
+        public DataContext(DbContextOptions options, IUserAccessor accessor) : base(options)
+        {
+            _accessor = accessor;
         }
 
         public DbSet<Product> Products { get; set; }
@@ -21,8 +25,21 @@ namespace Persistence
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Product>().HasQueryFilter(p => p.AppUserId == _accessor.GetUserId());
-            modelBuilder.Entity<Category>().HasQueryFilter(p => p.AppUserId == _accessor.GetUserId());
+            // Product sýnýfýna kullanýcý filtresi ekleme
+            modelBuilder.Entity<Product>()
+                .HasQueryFilter(p => p.AppUserId == _accessor.GetUserId());
+
+            // Category sýnýfýna kullanýcý filtresi ekleme
+            modelBuilder.Entity<Category>()
+                .HasQueryFilter(c => c.AppUserId == _accessor.GetUserId());
+
+            // Product ve Category arasýndaki iliþkiyi tanýmlama
+            modelBuilder.Entity<Product>()
+                .HasOne(p => p.Category)
+                .WithMany(c => c.Products)
+                .HasForeignKey(p => p.CategoryId)
+                .OnDelete(DeleteBehavior.Cascade);
+
         }
     }
 }

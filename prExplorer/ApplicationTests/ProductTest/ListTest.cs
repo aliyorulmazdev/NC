@@ -36,7 +36,6 @@ namespace Application.Tests.ProductsTest
                 DiscountPercentage = 5,
                 Price = 2000,
                 Brand = "Test Brand",
-                Category = "Test Category",
                 Thumbnail = "",
                 Rating = 5,
                 AppUserId = userId
