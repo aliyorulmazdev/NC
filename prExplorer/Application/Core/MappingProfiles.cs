@@ -13,6 +13,8 @@ namespace Application.Core
                 .ForMember(dest => dest.Category, opt => opt.MapFrom(src => src.Category.Title));
 
             CreateMap<Category, CategoryDto>();
+            CreateMap<Category, Category>();
+            CreateMap<Product, Product>();
         }
     }
 }

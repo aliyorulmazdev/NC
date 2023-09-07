@@ -25,6 +25,7 @@ export default observer(function NavBar() {
           prExplorer
         </Menu.Item>
         <Menu.Item name={t('products')} as={NavLink} to="/products" />
+        <Menu.Item name={t('categories')} as={NavLink} to="/categories" />
 
 
 
@@ -35,6 +36,14 @@ export default observer(function NavBar() {
             to="/createProduct"
             positive
             content={t('createProduct')}
+          />
+        </Menu.Item>
+        <Menu.Item header>
+          <Button
+            as={NavLink}
+            to="/createCategory"
+            positive
+            content={t('createCategory')}
           />
         </Menu.Item>
         <Menu.Item position="right">
