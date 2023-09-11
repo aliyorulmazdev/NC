@@ -21,8 +21,8 @@ namespace API.Extensions
             {
                 opt.UseSqlite(configuration.GetConnectionString("DefaultConnection"));
             });
-            //Cors
 
+            //Cors
             services.AddCors(opt =>
             {
                 opt.AddPolicy("CorsPolicy", policy =>
@@ -33,7 +33,6 @@ namespace API.Extensions
 
             //MediatR
             #region Product
-            services.AddMediatR(typeof(ApplicationTests.ProductTest.GetAllProductsTest.Handler));
             services.AddMediatR(typeof(Application.Products.GetAllProducts.Handler));
             services.AddMediatR(typeof(Application.Products.Create.Handler));
             services.AddMediatR(typeof(Application.Products.Edit.Handler));
@@ -41,7 +40,6 @@ namespace API.Extensions
             services.AddMediatR(typeof(Application.Products.Delete.Handler));
             #endregion
             #region Category
-            services.AddMediatR(typeof(ApplicationTests.CategoryTest.GetAllCategoriesTest.Handler));
             services.AddMediatR(typeof(Application.Categories.GetAllCategories.Handler));
             services.AddMediatR(typeof(Application.Categories.Create.Handler));
             services.AddMediatR(typeof(Application.Categories.Edit.Handler));

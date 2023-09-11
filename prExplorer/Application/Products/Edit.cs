@@ -43,6 +43,7 @@ namespace Application.Products
 
                 if (user == null)
                 {
+                    //Error handling if the user is not found.
                     return Result<Unit>.Failure("Kullanıcı bulunamadı.");
                 }
 

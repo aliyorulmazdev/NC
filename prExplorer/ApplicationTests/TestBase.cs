@@ -19,7 +19,7 @@ namespace Application.Tests
                 builder.UseInMemoryDatabase(Guid.NewGuid().ToString());
             }
 
-            // IUserAccessor'u DataContext'e ilettik
+            //We passed IUserAccessor to DataContext.
             var dbContext = new DataContext(builder.Options);
 
             if (useSqlite)

@@ -25,15 +25,15 @@ namespace Persistence
         {
             base.OnModelCreating(modelBuilder);
 
-            // Product sýnýfýna kullanýcý filtresi ekleme
+            //Adding user filter to product class.
             modelBuilder.Entity<Product>()
                 .HasQueryFilter(p => p.AppUserId == _accessor.GetUserId());
 
-            // Category sýnýfýna kullanýcý filtresi ekleme
+            //Adding user filter to category class.
             modelBuilder.Entity<Category>()
                 .HasQueryFilter(c => c.AppUserId == _accessor.GetUserId());
 
-            // Product ve Category arasýndaki iliþkiyi tanýmlama
+            //Define the relationship between Product and Category.
             modelBuilder.Entity<Product>()
                 .HasOne(p => p.Category)
                 .WithMany(c => c.Products)

@@ -1,7 +1,6 @@
 ﻿using Application.Core;
 using Application.Interfaces;
-using ApplicationTests.CategoryTest;
-using ApplicationTests.ProductTest;
+using Application.Products;
 using AutoMapper;
 using Domain;
 using Microsoft.EntityFrameworkCore;
@@ -20,8 +19,9 @@ namespace Application.Tests.ProductsTest
 
             var createdUser = new AppUser { DisplayName = "Dawid Sibinski", UserName = "Dawid", Email = "dawidsibinski@gmail.com" };
             context.Entry(createdUser).State = EntityState.Added;
+            context.SaveChanges();
 
-            // IUserAccessor'ı sahtele
+            //Fake IUserAccessor.
             var userAccessorMock = new Mock<IUserAccessor>();
             string? userId = context.Users.FirstOrDefault(x => x.UserName == createdUser.UserName)?.Id;
             userAccessorMock.Setup(ua => ua.GetUserId()).Returns(userId);
@@ -49,13 +49,13 @@ namespace Application.Tests.ProductsTest
 
             var mockMapper = new MapperConfiguration(cfg => { cfg.AddProfile(new MappingProfiles()); });
             var mapper = mockMapper.CreateMapper();
-            var handler = new GetAllProductsTest.Handler(context, mapper, userAccessor);
+            var handler = new GetAllProducts.Handler(context, mapper);
 
             #endregion
 
             #region Assert
 
-            var value = handler.Handle(new GetAllProductsTest.Query(), CancellationToken.None).Result.Value;
+            var value = handler.Handle(new GetAllProducts.Query(), CancellationToken.None, userAccessor).Result.Value;
             var productWithTitle = value.Find(product => product.Title == "Test Product 1");
 
             Assert.Contains(productWithTitle, value);
