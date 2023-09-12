@@ -1,5 +1,6 @@
 using API.DTOs;
 using API.Services;
+using Application.Categories;
 using Domain;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -11,7 +12,7 @@ namespace API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class AccountController : ControllerBase
+    public class AccountController : BaseApiController
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly TokenService _tokenService;
@@ -58,17 +59,62 @@ namespace API.Controllers
             {
                 DisplayName = registerDto.DisplayName,
                 UserName = registerDto.Username,
-                Email = registerDto.Email
+                Email = registerDto.Email,
             };
 
             var result = await _userManager.CreateAsync(user, registerDto.Password);
 
             if (result.Succeeded)
             {
+                var currentUser = await _userManager.FindByEmailAsync(registerDto.Email);
+                await AddCategoryInUser(currentUser.Id);
+
                 return CreateUserObject(user);
             }
 
             return BadRequest(result.Errors);
+        }
+
+        public async Task<ActionResult> AddCategoryInUser(string appUserId)
+        {
+            List<Category> categories = new List<Category>
+            {
+                new Category
+                {
+                    Title = "Clothes",
+                    Description = "Description",
+                    Thumbnail = "Thumbnail",
+                    AppUserId = appUserId
+                },
+                new Category
+                {
+                    Title = "Shoes",
+                    Description = "Description",
+                    Thumbnail = "Thumbnail",
+                    AppUserId = appUserId
+                },
+                new Category
+                {
+                    Title = "Accessories",
+                    Description = "Description",
+                    Thumbnail = "Thumbnail",
+                    AppUserId = appUserId
+                },
+                new Category
+                {
+                    Title = "Watches",
+                    Description = "Description",
+                    Thumbnail = "Thumbnail",
+                    AppUserId = appUserId
+                }
+            };
+
+            foreach (var category in categories)
+            {
+                await Mediator.Send(new Create.Command { Category = category });
+            }
+
+            return Ok();
         }
 
         private ActionResult<UserDto> CreateUserObject(AppUser user)

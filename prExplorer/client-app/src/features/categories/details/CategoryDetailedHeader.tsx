@@ -1,17 +1,17 @@
 import { observer } from "mobx-react-lite";
 import React from "react";
 import { Button, Header, Item, Segment, Image } from "semantic-ui-react";
-import { Product } from "../../../app/models/product";
 import { Link } from "react-router-dom";
+import { Category } from "../../../app/models/category";
 
-const productImageStyle = {
+const categoryImageStyle = {
   filter: "brightness(50%)",
   width: "100%",
   height: "300px",
   objectFit: "cover",
 };
 
-const productImageTextStyle = {
+const categoryImageTextStyle = {
   position: "absolute",
   bottom: "5%",
   left: "5%",
@@ -21,21 +21,21 @@ const productImageTextStyle = {
 };
 
 interface Props {
-  product: Product;
+  category: Category;
 }
 
-export default observer(function ProductDetailedHeader({ product }: Props) {
+export default observer(function CategoryDetailedHeader({ category }: Props) {
   return (
     <Segment.Group>
       <Segment basic attached="top" style={{ padding: "0" }}>
-        <Image src={`${product.thumbnail}`} fluid style={productImageStyle} />
-        <Segment style={productImageTextStyle} basic>
+        <Image src={`${category.thumbnail}`} fluid style={categoryImageStyle} />
+        <Segment style={categoryImageTextStyle} basic>
           <Item.Group>
             <Item>
               <Item.Content>
                 <Header
                   size="huge"
-                  content={product.title}
+                  content={category.title}
                   style={{ color: "white" }}
                 />
                 <p>
@@ -47,15 +47,15 @@ export default observer(function ProductDetailedHeader({ product }: Props) {
         </Segment>
       </Segment>
       <Segment clearing attached="bottom">
-        <Button color="teal">Follow product</Button>
-        <Button>Unfollow product</Button>
+        <Button color="teal">Follow category</Button>
+        <Button>Unfollow category</Button>
         <Button
           color="green"
           floated="right"
           as={Link}
-          to={`/manageProduct/${product.id}`}
+          to={`/manageCategory/${category.id}`}
         >
-          Manage Product
+          Manage Category
         </Button>
       </Segment>
     </Segment.Group>

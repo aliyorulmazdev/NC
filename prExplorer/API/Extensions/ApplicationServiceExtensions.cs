@@ -1,7 +1,5 @@
 using Application.Core;
 using Application.Interfaces;
-using Application.Products;
-using ApplicationTests;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Infrastructure.Security;
@@ -17,11 +15,13 @@ namespace API.Extensions
         {
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
+
             //ConnectionString
             services.AddDbContext<DataContext>(opt =>
             {
                 opt.UseSqlite(configuration.GetConnectionString("DefaultConnection"));
             });
+
             //Cors
             services.AddCors(opt =>
             {
@@ -30,16 +30,29 @@ namespace API.Extensions
                     policy.AllowAnyMethod().AllowAnyHeader().WithOrigins("http://localhost:3000");
                 });
             });
+
             //MediatR
-            services.AddMediatR(typeof(GetAllProductsTest.Handler));
-            services.AddMediatR(typeof(GetAllProducts.Handler));
-            services.AddMediatR(typeof(Create.Handler));
-            services.AddMediatR(typeof(Edit.Handler));
-            services.AddMediatR(typeof(Details.Handler));
-            services.AddMediatR(typeof(Delete.Handler));
+            #region Product
+            services.AddMediatR(typeof(Application.Products.GetAllProducts.Handler));
+            services.AddMediatR(typeof(Application.Products.Create.Handler));
+            services.AddMediatR(typeof(Application.Products.Edit.Handler));
+            services.AddMediatR(typeof(Application.Products.Details.Handler));
+            services.AddMediatR(typeof(Application.Products.Delete.Handler));
+            #endregion
+            #region Category
+            services.AddMediatR(typeof(Application.Categories.GetAllCategories.Handler));
+            services.AddMediatR(typeof(Application.Categories.Create.Handler));
+            services.AddMediatR(typeof(Application.Categories.Edit.Handler));
+            services.AddMediatR(typeof(Application.Categories.Details.Handler));
+            services.AddMediatR(typeof(Application.Categories.Delete.Handler));
+            #endregion
+
             services.AddAutoMapper(typeof(MappingProfiles).Assembly);
+
             services.AddFluentValidationAutoValidation();
-            services.AddValidatorsFromAssemblyContaining<Create>();
+            services.AddValidatorsFromAssemblyContaining<Application.Products.Create>();
+            services.AddValidatorsFromAssemblyContaining<Application.Categories.Create>();
+
             services.AddHttpContextAccessor();
             services.AddScoped<IUserAccessor, UserAccessor>();
 

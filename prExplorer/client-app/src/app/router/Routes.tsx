@@ -7,6 +7,9 @@ import TestErrors from "../../features/errors/TestError";
 import NotFound from "../../features/errors/NotFound";
 import ServerError from "../../features/errors/ServerError";
 import LoginForm from "../../features/users/LoginForm";
+import CategoryDashboard from "../../features/categories/dashboard/CategoryDashboard";
+import CategoryDetails from "../../features/categories/details/CategoryDetails";
+import CategoryForm from "../../features/categories/form/CategoryForm";
 
 export const routes: RouteObject[] = [
     {
@@ -16,7 +19,13 @@ export const routes: RouteObject[] = [
             {path: 'products', element: <ProductDashboard />},
             {path: 'products/:id', element: <ProductDetails />},
             {path: 'createProduct', element: <ProductForm key='create' />},
-            {path: 'manage/:id', element: <ProductForm key='manage' />},
+            {path: 'manageProduct/:id', element: <ProductForm key='manage' />},
+
+            {path: 'categories', element: <CategoryDashboard />},
+            {path: 'categories/:id', element: <CategoryDetails />},
+            {path: 'createCategory', element: <CategoryForm key='create' />},
+            {path: 'manageCategory/:id', element: <CategoryForm key='manage' />},
+
             {path: 'login', element: <LoginForm key='login' />},
             {path: 'errors', element: <TestErrors />},
             {path: 'not-found', element: <NotFound />},

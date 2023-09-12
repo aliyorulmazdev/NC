@@ -7,5 +7,6 @@ namespace Domain
         public string DisplayName { get; set; }
         public string Bio { get; set; }
         public ICollection<Product> Products { get; set; }
+        public ICollection<Category> Categories { get; set; }
     }
 }

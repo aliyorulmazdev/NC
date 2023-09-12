@@ -6,20 +6,20 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 
-namespace Application.Products
+namespace Application.Categories
 {
     public class Create
     {
         public class Command : IRequest<Result<Unit>>
         {
-            public Product Product { get; set; }
+            public Category Category { get; set; }
         }
 
         public class CommandValidator : AbstractValidator<Command>
         {
             public CommandValidator()
             {
-                RuleFor(x => x.Product).SetValidator(new ProductValidator());
+                RuleFor(x => x.Category).SetValidator(new CategoryValidator());
             }
         }
 
@@ -44,13 +44,13 @@ namespace Application.Products
                     return Result<Unit>.Failure("Kullanıcı bulunamadı.");
                 }
 
-                var pro = request.Product;
+                var pro = request.Category;
                 pro.AppUser = user;
                 pro.AppUserId = _userAccessor.GetUserId();
 
-                _context.Products.Add(request.Product);
+                _context.Categories.Add(request.Category);
                 var result = await _context.SaveChangesAsync() > 0;
-                if (!result) return Result<Unit>.Failure("Failed to create product");
+                if (!result) return Result<Unit>.Failure("Failed to create category");
                 return Result<Unit>.Success(Unit.Value);
             }
         }

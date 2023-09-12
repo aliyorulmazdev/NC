@@ -43,6 +43,7 @@ namespace Application.Products
 
                 if (user == null)
                 {
+                    //Error handling if the user is not found.
                     return Result<Unit>.Failure("Kullanıcı bulunamadı.");
                 }
 
@@ -51,7 +52,7 @@ namespace Application.Products
                 if (product == null) return null;
 
                 _mapper.Map(request.Product, product);
-                product.appUserId = _userAccessor.GetUserId();
+                product.AppUserId = _userAccessor.GetUserId();
                 product.AppUser = user;
                 var result = await _context.SaveChangesAsync() > 0;
                 if (!result) return Result<Unit>.Failure("Failed to update product");

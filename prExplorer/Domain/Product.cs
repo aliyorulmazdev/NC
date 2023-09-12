@@ -10,9 +10,10 @@ namespace Domain
         public decimal Rating { get; set; }
         public int Stock { get; set; }
         public string Brand { get; set; }
-        public string Category { get; set; }
         public string Thumbnail { get; set; }
-        public string appUserId { get; set; }
+        public string AppUserId { get; set; }
+        public Guid CategoryId { get; set; }
         public AppUser AppUser { get; set; }
+        public Category Category { get; set; }
     }
 }

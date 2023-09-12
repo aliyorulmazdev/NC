@@ -1,5 +1,4 @@
 using Application.Products;
-using ApplicationTests;
 using Domain;
 using Microsoft.AspNetCore.Mvc;
 
