@@ -1,6 +1,6 @@
+using Application.Core;
 using System.Net;
 using System.Text.Json;
-using Application.Core;
 
 namespace API.Middleware
 {
@@ -9,6 +9,7 @@ namespace API.Middleware
         private readonly RequestDelegate _next;
         private readonly ILogger<ExceptionMiddleware> _logger;
         private readonly IHostEnvironment _env;
+
         public ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionMiddleware> logger, IHostEnvironment env)
         {
             _next = next;
@@ -32,11 +33,10 @@ namespace API.Middleware
                     ? new AppException(context.Response.StatusCode, ex.Message, ex.StackTrace?.ToString())
                     : new AppException(context.Response.StatusCode, "Internal Server Error");
 
-                var options = new JsonSerializerOptions{PropertyNamingPolicy = JsonNamingPolicy.CamelCase};
+                var options = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
                 var json = JsonSerializer.Serialize(response, options);
                 await context.Response.WriteAsync(json);
             }
         }
-        
     }
 }

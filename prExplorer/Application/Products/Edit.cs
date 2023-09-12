@@ -15,6 +15,7 @@ namespace Application.Products
         {
             public Product Product { get; set; }
         }
+
         public class CommandValidator : AbstractValidator<Command>
         {
             public CommandValidator()
@@ -28,24 +29,24 @@ namespace Application.Products
             private readonly DataContext _context;
             private readonly IMapper _mapper;
             private readonly IUserAccessor _userAccessor;
+
             public Handler(DataContext context, IMapper mapper, IUserAccessor userAccessor)
             {
                 _userAccessor = userAccessor;
                 _mapper = mapper;
                 _context = context;
             }
+
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
                 var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == _userAccessor.GetUserId());
 
                 if (user == null)
                 {
-                    // Eğer kullanıcı bulunamazsa hata işleme.
                     return Result<Unit>.Failure("Kullanıcı bulunamadı.");
                 }
 
-                var product = await _context.Products
-                    .Where(x => x.appUserId == user.Id && request.Product.Id == x.Id).FirstOrDefaultAsync();
+                var product = await _context.Products.Where(x => x.Id == request.Product.Id).FirstOrDefaultAsync();
 
                 if (product == null) return null;
 
@@ -57,6 +58,5 @@ namespace Application.Products
                 return Result<Unit>.Success(Unit.Value);
             }
         }
-
     }
 }

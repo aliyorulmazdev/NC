@@ -1,10 +1,9 @@
-using System.Text;
 using API.Services;
 using Domain;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Persistence;
-
+using System.Text;
 
 namespace API.Extensions
 {
@@ -16,7 +15,6 @@ namespace API.Extensions
             {
                 opt.Password.RequireNonAlphanumeric = false;
                 opt.User.RequireUniqueEmail = true;
-
             })
             .AddEntityFrameworkStores<DataContext>();
 
@@ -34,9 +32,7 @@ namespace API.Extensions
                     };
                 });
 
-
             services.AddScoped<TokenService>();
-
 
             return services;
         }

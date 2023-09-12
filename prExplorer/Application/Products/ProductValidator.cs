@@ -16,7 +16,6 @@ namespace Application.Products
             RuleFor(x => x.Category).NotEmpty();
             RuleFor(x => x.Brand).NotEmpty();
             RuleFor(x => x.Rating).NotEmpty();
-
         }
     }
 }

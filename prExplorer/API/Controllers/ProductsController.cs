@@ -1,10 +1,7 @@
 using Application.Products;
+using ApplicationTests;
 using Domain;
-using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Persistence;
 
 namespace API.Controllers
 {
@@ -13,7 +10,7 @@ namespace API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetProducts()
         {
-            return HandleResult(await Mediator.Send(new List.Query()));
+            return HandleResult(await Mediator.Send(new GetAllProducts.Query()));
         }
 
         [HttpGet("{id}")]
@@ -34,11 +31,11 @@ namespace API.Controllers
             product.Id = id;
             return HandleResult(await Mediator.Send(new Edit.Command { Product = product }));
         }
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProduct(Guid id)
         {
             return HandleResult(await Mediator.Send(new Delete.Command { Id = id }));
         }
-
     }
 }
