@@ -1,4 +1,4 @@
-namespace Application.Interfaces
+namespace Domain
 {
     public interface IUserAccessor
     {

@@ -1,5 +1,5 @@
 using Application.Core;
-using Application.Interfaces;
+using Domain;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Infrastructure.Security;

@@ -1,5 +1,4 @@
 using Application.Core;
-using Application.Interfaces;
 using AutoMapper;
 using Domain;
 using FluentValidation;
@@ -43,7 +42,7 @@ namespace Application.Products
 
                 if (user == null)
                 {
-                    //Error handling if the user is not found.
+                    //User is not found.
                     return Result<Unit>.Failure("Kullanıcı bulunamadı.");
                 }
 

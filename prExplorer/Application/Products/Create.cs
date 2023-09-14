@@ -1,5 +1,4 @@
 using Application.Core;
-using Application.Interfaces;
 using Domain;
 using FluentValidation;
 using MediatR;
@@ -41,7 +40,7 @@ namespace Application.Products
                 if (user == null)
                 {
                     //Error handling if the user is not found.
-                    return Result<Unit>.Failure("Kullanıcı bulunamadı.");
+                    return Result<Unit>.Failure("Cannot find an user.");
                 }
 
                 var pro = request.Product;

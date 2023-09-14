@@ -1,5 +1,4 @@
 using Application.Core;
-using Application.Interfaces;
 using AutoMapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -30,16 +29,6 @@ namespace Application.Products
                 var productsReturned = _mapper.Map<List<ProductDto>>(await _context.Products
                     .Include(p => p.Category)
                     .ToListAsync(cancellationToken));
-                return Result<List<ProductDto>>.Success(productsReturned);
-            }
-
-            public async Task<Result<List<ProductDto>>> Handle(Query request, CancellationToken cancellationToken, IUserAccessor userAccessor)
-            {
-                var productsReturned = _mapper.Map<List<ProductDto>>(await _context.Products
-                    .Where(x => x.AppUserId == userAccessor.GetUserId())
-                    .IgnoreQueryFilters()
-                    .ToListAsync(cancellationToken));
-
                 return Result<List<ProductDto>>.Success(productsReturned);
             }
         }

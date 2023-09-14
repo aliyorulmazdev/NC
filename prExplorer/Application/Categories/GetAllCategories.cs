@@ -1,5 +1,4 @@
 using Application.Core;
-using Application.Interfaces;
 using Application.Products;
 using AutoMapper;
 using MediatR;
@@ -32,15 +31,6 @@ namespace Application.Categories
                 return Result<List<CategoryDto>>.Success(categoriesReturned);
             }
 
-            public async Task<Result<List<CategoryDto>>> Handle(Query request, CancellationToken cancellationToken, IUserAccessor userAccessor)
-            {
-                var categoriesReturned = _mapper.Map<List<CategoryDto>>(await _context.Categories
-                    .Where(x => x.AppUserId == userAccessor.GetUserId())
-                    .IgnoreQueryFilters()
-                    .ToListAsync(cancellationToken));
-
-                return Result<List<CategoryDto>>.Success(categoriesReturned);
-            }
         }
     }
 }

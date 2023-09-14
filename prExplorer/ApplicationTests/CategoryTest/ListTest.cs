@@ -1,6 +1,5 @@
 ﻿using Application.Categories;
 using Application.Core;
-using Application.Interfaces;
 using AutoMapper;
 using Domain;
 using Microsoft.EntityFrameworkCore;
@@ -50,7 +49,7 @@ namespace Application.Tests.CategoryTest
 
             #region Assert
 
-            var value = handler.Handle(new GetAllCategories.Query(), CancellationToken.None, userAccessor).Result.Value;
+            var value = handler.Handle(new GetAllCategories.Query(), CancellationToken.None).Result.Value;
             var categoryWithTitle = value.Find(category => category.Title == "Test Category 1");
 
             Assert.Contains(categoryWithTitle, value);

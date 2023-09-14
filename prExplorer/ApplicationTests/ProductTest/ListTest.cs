@@ -1,5 +1,4 @@
 ﻿using Application.Core;
-using Application.Interfaces;
 using Application.Products;
 using AutoMapper;
 using Domain;
@@ -55,7 +54,7 @@ namespace Application.Tests.ProductsTest
 
             #region Assert
 
-            var value = handler.Handle(new GetAllProducts.Query(), CancellationToken.None, userAccessor).Result.Value;
+            var value = handler.Handle(new GetAllProducts.Query(), CancellationToken.None).Result.Value;
             var productWithTitle = value.Find(product => product.Title == "Test Product 1");
 
             Assert.Contains(productWithTitle, value);

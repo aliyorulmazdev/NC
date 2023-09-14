@@ -1,35 +1,46 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using System.Linq;
+using Application.Core;
+using Domain;
+using Microsoft.EntityFrameworkCore;
+using Moq;
 using Persistence;
-using Application.Interfaces; // IUserAccessor ekledik
 
 namespace Application.Tests
 {
     public class TestBase
     {
-
-        public DataContext GetDbContext(bool useSqlite = false)
+        protected DataContext GetDbContext(bool useSqlite = false)
         {
             var builder = new DbContextOptionsBuilder<DataContext>();
             if (useSqlite)
             {
-                builder.UseSqlite("Data Source=:memory", x => { });
+                builder.UseSqlite("Data Source=:memory:", x => { });
             }
             else
             {
                 builder.UseInMemoryDatabase(Guid.NewGuid().ToString());
             }
 
-            //We passed IUserAccessor to DataContext.
-            var dbContext = new DataContext(builder.Options);
+            var dbContextOptions = builder.Options;
+            var userAccessor = CreateUserAccessorMock("123").Object;
+            var context = new DataContext(dbContextOptions, userAccessor);
 
             if (useSqlite)
             {
-                dbContext.Database.OpenConnection();
+                context.Database.OpenConnection();
             }
 
-            dbContext.Database.EnsureCreated();
+            context.Database.EnsureCreated();
 
-            return dbContext;
+            return context;
+        }
+
+        protected Mock<IUserAccessor> CreateUserAccessorMock(string userId)
+        {
+            var userAccessorMock = new Mock<IUserAccessor>();
+            userAccessorMock.Setup(ua => ua.GetUserId()).Returns(userId);
+            return userAccessorMock;
         }
     }
 }

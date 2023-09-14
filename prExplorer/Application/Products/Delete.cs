@@ -1,5 +1,5 @@
 using Application.Core;
-using Application.Interfaces;
+using Domain;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
@@ -31,7 +31,7 @@ namespace Application.Products
                 if (user == null)
                 {
                     //Error handling if the user is not found.
-                    return Result<Unit>.Failure("Kullanıcı bulunamadı.");
+                    return Result<Unit>.Failure("Cannot find an user.");
                 }
 
                 var product = await _context.Products
