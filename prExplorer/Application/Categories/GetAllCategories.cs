@@ -1,6 +1,5 @@
 using Application.Core;
 using Application.Interfaces;
-using Application.Products;
 using AutoMapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;

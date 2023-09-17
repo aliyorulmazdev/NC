@@ -1,7 +1,5 @@
-using Domain;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
 using System.Text;
 
 namespace API.Services
@@ -15,29 +13,30 @@ namespace API.Services
             _config = config;
         }
 
-        public string CreateToken(AppUser user)
+        public string GetToken()
         {
-            var claims = new List<Claim>()
-            {
-                new Claim(ClaimTypes.Name, user.UserName),
-                new Claim(ClaimTypes.NameIdentifier, user.Id),
-                new Claim(ClaimTypes.Email, user.Email),
-            };
+            SecurityTokenDescriptor tokenDescriptor = GetTokenDescriptor();
+            var tokenHandler = new JwtSecurityTokenHandler();
+            SecurityToken securityToken = tokenHandler.CreateToken(tokenDescriptor);
+            string token = tokenHandler.WriteToken(securityToken);
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["TokenKey"]));
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
+            return token;
+        }
+
+        private SecurityTokenDescriptor GetTokenDescriptor()
+        {
+            const int expiringDays = 7;
+
+            byte[] securityKey = Encoding.UTF8.GetBytes(_config["TokenKey"]);
+            var symmetricSecurityKey = new SymmetricSecurityKey(securityKey);
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.UtcNow.AddDays(7),
-                SigningCredentials = creds
+                Expires = DateTime.UtcNow.AddDays(expiringDays),
+                SigningCredentials = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256Signature)
             };
 
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-
-            return tokenHandler.WriteToken(token);
+            return tokenDescriptor;
         }
     }
 }

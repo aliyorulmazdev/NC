@@ -10,8 +10,6 @@ using System.Security.Claims;
 
 namespace API.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
     public class AccountController : BaseApiController
     {
         private readonly UserManager<AppUser> _userManager;
@@ -25,7 +23,7 @@ namespace API.Controllers
 
         [AllowAnonymous]
         [HttpPost("login")]
-        public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
+        public async Task<ActionResult<UserDto>> Login([FromBody] LoginDto loginDto)
         {
             var user = await _userManager.FindByEmailAsync(loginDto.Email);
             if (user == null) return Unauthorized();
@@ -41,7 +39,7 @@ namespace API.Controllers
 
         [AllowAnonymous]
         [HttpPost("register")]
-        public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
+        public async Task<ActionResult<UserDto>> Register([FromBody] RegisterDto registerDto)
         {
             if (await _userManager.Users.AnyAsync(x => x.UserName == registerDto.Username))
             {
@@ -75,7 +73,14 @@ namespace API.Controllers
             return BadRequest(result.Errors);
         }
 
-        public async Task<ActionResult> AddCategoryInUser(string appUserId)
+        [HttpGet]
+        public async Task<ActionResult<UserDto>> GetCurrentUser()
+        {
+            var user = await _userManager.FindByEmailAsync(User.FindFirstValue(ClaimTypes.Email));
+            return CreateUserObject(user);
+        }
+
+        private async Task<ActionResult> AddCategoryInUser(string appUserId)
         {
             List<Category> categories = new List<Category>
             {
@@ -123,16 +128,9 @@ namespace API.Controllers
             {
                 DisplayName = user.DisplayName,
                 Image = null,
-                Token = _tokenService.CreateToken(user),
+                Token = _tokenService.GetToken(),
                 Username = user.UserName
             };
-        }
-
-        [HttpGet]
-        public async Task<ActionResult<UserDto>> GetCurrentUser()
-        {
-            var user = await _userManager.FindByEmailAsync(User.FindFirstValue(ClaimTypes.Email));
-            return CreateUserObject(user);
-        }
+        }       
     }
 }

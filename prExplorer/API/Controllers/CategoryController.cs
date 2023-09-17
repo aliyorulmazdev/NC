@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
-    public class CategoriesController : BaseApiController
+    public class CategoryController : BaseApiController
     {
         [HttpGet]
         public async Task<IActionResult> GetCategories()
@@ -19,13 +19,13 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateCategory(Category category)
+        public async Task<IActionResult> CreateCategory([FromBody] Category category)
         {
             return HandleResult(await Mediator.Send(new Create.Command { Category = category }));
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateCategory(Guid id, Category category)
+        public async Task<IActionResult> UpdateCategory(Guid id, [FromBody] Category category)
         {
             category.Id = id;
             return HandleResult(await Mediator.Send(new Edit.Command { Category = category }));

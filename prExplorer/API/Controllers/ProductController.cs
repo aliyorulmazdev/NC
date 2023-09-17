@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
-    public class ProductsController : BaseApiController
+    public class ProductController : BaseApiController
     {
         [HttpGet]
         public async Task<IActionResult> GetProducts()
@@ -19,13 +19,13 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateProduct(Product product)
+        public async Task<IActionResult> CreateProduct([FromBody] Product product)
         {
             return HandleResult(await Mediator.Send(new Create.Command { Product = product }));
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateProduct(Guid id, Product product)
+        public async Task<IActionResult> UpdateProduct(Guid id, [FromBody] Product product)
         {
             product.Id = id;
             return HandleResult(await Mediator.Send(new Edit.Command { Product = product }));
