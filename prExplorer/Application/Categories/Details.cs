@@ -26,8 +26,8 @@ namespace Application.Categories
 
             public async Task<Result<CategoryDto>> Handle(Query request, CancellationToken cancellationToken)
             {
-                var categoriesReturned = _mapper.Map<CategoryDto>(await _context.Categories.Where(x => x.Id == request.Id).FirstOrDefaultAsync());
-                return Result<CategoryDto>.Success(categoriesReturned);
+                var categoryReturned = _mapper.Map<CategoryDto>(await _context.Categories.Where(x => x.Id == request.Id).FirstOrDefaultAsync());
+                return Result<CategoryDto>.Success(categoryReturned);
             }
         }
     }

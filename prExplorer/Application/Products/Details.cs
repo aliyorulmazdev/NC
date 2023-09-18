@@ -26,8 +26,8 @@ namespace Application.Products
 
             public async Task<Result<ProductDto>> Handle(Query request, CancellationToken cancellationToken)
             {
-                var productsReturned = _mapper.Map<ProductDto>(await _context.Products.Where(x => x.Id == request.Id).FirstOrDefaultAsync());
-                return Result<ProductDto>.Success(productsReturned);
+                var productReturned = _mapper.Map<ProductDto>(await _context.Products.Where(x => x.Id == request.Id).FirstOrDefaultAsync());
+                return Result<ProductDto>.Success(productReturned);
             }
         }
     }

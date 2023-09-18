@@ -44,7 +44,7 @@ namespace Application.Products
                 if (user == null)
                 {
                     //Error handling if the user is not found.
-                    return Result<Unit>.Failure("Kullanıcı bulunamadı.");
+                    return Result<Unit>.Failure("User not found.");
                 }
 
                 var product = await _context.Products.Where(x => x.Id == request.Product.Id).FirstOrDefaultAsync();
